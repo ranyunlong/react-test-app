@@ -1,18 +1,22 @@
-import  { BrowserRouter, Route } from 'react-router-dom';
+import  { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react'
 
-import Admin from '../views/Admin'
+import AdminIndex from '../views/admin'
 import Home from '../views/Home'
-import Notification from '../views/Notification'
-
+import Notfound from '../views/Notfound'
+import AdminLogin from "../views/admin/Login";
+import  './App.css'
 class Router extends Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
-                    <Route exact path={'/'} component={Home}></Route>
-                    <Route exact path={'/admin'} component={Admin}></Route>
-                    <Route exact component={Notification} />
+                <div className="app">
+                    <Switch>
+                        <Route exact path={'/'} component={Home} />
+                        <Route exact path={'/admin'} component={AdminIndex} />
+                        <Route exact path={'/admin/login'} component={AdminLogin} />
+                        <Route component={Notfound} />
+                    </Switch>
                 </div>
             </BrowserRouter>
         )
