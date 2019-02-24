@@ -5,7 +5,7 @@ import http from '../../utils/http';
 import { connect } from 'react-redux';
 import actions from '../../store/reducers/action-types'
 import './Login.less';
-class AdminLogin extends  Component{
+class SysLogin extends  Component{
     state = {
         uuid: uuid(),
         spinning: false,
@@ -24,7 +24,7 @@ class AdminLogin extends  Component{
                     if (code === 0) {
                         // 登陆成功后跳转页面
                         this.props.setAdminToken(token);
-                        this.props.history.replace('/admin')
+                        this.props.history.replace('/sys')
                     } else {
                         notification.error({
                             message: '错误',
@@ -39,7 +39,7 @@ class AdminLogin extends  Component{
     componentWillMount() {
         const { admin, history } = this.props;
         if (admin.token) {
-            return history.replace('/admin')
+            return history.replace('/sys')
         }
     }
 
@@ -132,4 +132,4 @@ export default Form.create({
             dispatch({ type, data });
         }
     }
-})(AdminLogin))
+})(SysLogin))
