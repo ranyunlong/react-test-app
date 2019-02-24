@@ -22,6 +22,7 @@ class SysIndex extends Component {
         })
     }
     renderMenu(parentId) {
+        if (!Array.isArray(this.state.menuList)) return '';
         return this.state.menuList.filter((item) => item.parentId === parentId).map((item) => {
             if (item.type === 0) {
                 return (
@@ -38,12 +39,14 @@ class SysIndex extends Component {
                     </Menu.SubMenu>
                 )
             } else if(item.type === 1) {
-                if (item.name === 'SQL监控') return;
+                if (item.name === 'SQL监控') return '';
                 return (
                     <Menu.Item key={item.menuId}>
                         <Link to={`/${item.url}`}>{item.name}</Link>
                     </Menu.Item>
                 )
+            } else {
+                return '';
             }
         })
     }
